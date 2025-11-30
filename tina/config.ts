@@ -19,11 +19,6 @@ export default defineConfig({
     },
   },
   
-  backend: {
-    branch: 'main',
-    repo: '2050beyond/Alegria',
-  },
-  
   schema: {
     collections: [
       {
