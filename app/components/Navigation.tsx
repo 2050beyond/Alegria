@@ -8,7 +8,6 @@ export function Navigation() {
   
   const links = [
     { href: '/', label: 'Home' },
-    { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About' },
     { href: '/careers', label: 'Careers' },
   ]
@@ -22,8 +21,8 @@ export function Navigation() {
           </Link>
           <div className="flex gap-4 md:gap-8">
             {links.map((link) => {
-              const isActive = pathname === link.href || 
-                              (link.href === '/blog' && pathname?.startsWith('/blog/'))
+            const isActive = pathname === link.href || 
+                            (link.href === '/' && pathname?.startsWith('/blog/'))
               return (
                 <Link
                   key={link.href}

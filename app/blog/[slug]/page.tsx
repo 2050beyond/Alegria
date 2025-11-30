@@ -91,7 +91,7 @@ export default async function BlogPost({
           </article>
 
           <nav className="mt-16 pt-8 border-t border-black">
-            <Link href="/blog" className="hover:underline">
+            <Link href="/" className="hover:underline">
               ← Back to blog
             </Link>
           </nav>
