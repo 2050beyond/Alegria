@@ -1,13 +1,8 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import './globals.css'
-import { ConditionalTinaProvider } from './components/TinaProvider'
-import { EditButton } from './components/EditButton'
-import { EditPencilButton } from './components/EditPencilButton'
-import { SaveButton } from './components/SaveButton'
-import { WalkthroughModal } from './components/WalkthroughModal'
-import { LastUpdatedFooter } from './components/LastUpdatedFooter'
-import { SessionWrapper } from './components/SessionWrapper'
+import TinaEditProvider from './components/TinaEditProvider'
+import EditToggle from './components/EditToggle'
 
 export const metadata: Metadata = {
   title: 'Minimal Restrained Blog',
@@ -30,18 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionWrapper>
-          <ConditionalTinaProvider>
-            <EditPencilButton />
-            <Suspense fallback={null}>
-              <EditButton />
-              <SaveButton />
-              <LastUpdatedFooter />
-            </Suspense>
-            <WalkthroughModal />
-            {children}
-          </ConditionalTinaProvider>
-        </SessionWrapper>
+        <TinaEditProvider>
+          <EditToggle />
+          {children}
+        </TinaEditProvider>
       </body>
     </html>
   )

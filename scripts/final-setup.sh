@@ -30,10 +30,14 @@ echo ""
 echo "📦 Step 2: Adding environment variables to Vercel..."
 echo ""
 
-echo "$CLIENT_ID" | npx vercel env add GITHUB_CLIENT_ID production preview development
-echo "$CLIENT_SECRET" | npx vercel env add GITHUB_CLIENT_SECRET production preview development
-echo "https://20251130.vercel.app" | npx vercel env add NEXTAUTH_URL production preview development
-echo "$NEXTAUTH_SECRET" | npx vercel env add NEXTAUTH_SECRET production preview development
+# Add to each environment separately
+for env in production preview development; do
+  echo "Adding to $env environment..."
+  echo "$CLIENT_ID" | npx vercel env add GITHUB_CLIENT_ID $env
+  echo "$CLIENT_SECRET" | npx vercel env add GITHUB_CLIENT_SECRET $env
+  echo "https://20251130.vercel.app" | npx vercel env add NEXTAUTH_URL $env
+  echo "$NEXTAUTH_SECRET" | npx vercel env add NEXTAUTH_SECRET $env
+done
 
 echo ""
 echo "✅ Environment variables added!"
