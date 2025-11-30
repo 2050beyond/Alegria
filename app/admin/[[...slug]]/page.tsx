@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import config from '../../../tina/config'
 
 // Only load TinaCMS admin when ?tina=1 query param is present
@@ -10,7 +10,7 @@ const TinaAdmin = dynamic(() => import('tinacms').then((mod) => mod.TinaAdmin), 
   ssr: false,
 })
 
-export default function AdminPage() {
+function AdminContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [isAllowed, setIsAllowed] = useState(false)
@@ -31,5 +31,13 @@ export default function AdminPage() {
   }
 
   return <TinaAdmin config={config} />
+}
+
+export default function AdminPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AdminContent />
+    </Suspense>
+  )
 }
 

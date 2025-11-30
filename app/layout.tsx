@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import './globals.css'
 import { ConditionalTinaProvider } from './components/TinaProvider'
 import { EditButton } from './components/EditButton'
@@ -28,10 +29,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ConditionalTinaProvider>
-          <EditButton />
-          <SaveButton />
+          <Suspense fallback={null}>
+            <EditButton />
+            <SaveButton />
+            <LastUpdatedFooter />
+          </Suspense>
           <WalkthroughModal />
-          <LastUpdatedFooter />
           {children}
         </ConditionalTinaProvider>
       </body>
