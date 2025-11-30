@@ -8,6 +8,13 @@ export default async function Home() {
   return (
     <>
       <Navigation />
+      <div className="w-full mb-16">
+        <img 
+          src="https://source.unsplash.com/2400x1200/?minimal,architecture,calm,blackandwhite" 
+          alt="Hero" 
+          className="w-full h-[60vh] object-cover"
+        />
+      </div>
       <div className="container py-16">
         <h1 className="text-[40px] md:text-[40px] font-semibold mb-12">
           Blog
