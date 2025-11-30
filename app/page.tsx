@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <Navigation />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-screen overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-screen overflow-y-auto">
         {posts.map((post) => {
           // Get hero image from post frontmatter or use default
           const heroImage = post.heroImage || 'https://source.unsplash.com/1600x900/?minimal,calm,blackandwhite'
