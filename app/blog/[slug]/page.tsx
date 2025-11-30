@@ -51,7 +51,7 @@ export default async function BlogPost({
     notFound()
   }
 
-  const heroImage = post.heroImage || 'https://source.unsplash.com/1600x900/?minimal,calm,blackandwhite'
+  const heroImage = post.heroImage || 'https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=900&fit=crop&auto=format&q=80'
 
   return (
     <>
