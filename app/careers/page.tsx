@@ -1,29 +1,31 @@
-import type { Metadata } from 'next'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Navigation } from '../components/Navigation'
 
-export const metadata: Metadata = {
-  title: 'Careers',
-  description: 'Career opportunities',
-}
+const careersPath = path.join(process.cwd(), 'content/pages/careers.mdx')
 
-export default function Careers() {
+export default async function Careers() {
+  const fileContents = fs.readFileSync(careersPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
   return (
-    <div className="container py-16">
-      <h1 className="text-[40px] md:text-[40px] font-semibold mb-8">Careers</h1>
-      
-      <div className="space-y-6">
-        <p>
-          We are not currently hiring. This page exists as a placeholder for future opportunities.
-        </p>
-        
-        <p>
-          When positions become available, they will be listed here with clear descriptions and requirements.
-        </p>
-        
-        <p>
-          We value clarity, competence, and commitment. If you share these values, check back periodically.
-        </p>
+    <>
+      <Navigation />
+      <div className="container py-16">
+        <article>
+          <h1 className="text-[40px] md:text-[40px] font-semibold mb-12">
+            {data.title || 'Careers'}
+          </h1>
+          <div className="prose prose-lg max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content}
+            </ReactMarkdown>
+          </div>
+        </article>
       </div>
-    </div>
+    </>
   )
 }
-

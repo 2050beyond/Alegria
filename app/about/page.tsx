@@ -1,33 +1,31 @@
-import type { Metadata } from 'next'
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { Navigation } from '../components/Navigation'
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'About this blog',
-}
+const aboutPath = path.join(process.cwd(), 'content/pages/about.mdx')
 
-export default function About() {
+export default async function About() {
+  const fileContents = fs.readFileSync(aboutPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
   return (
-    <div className="container py-16">
-      <h1 className="text-[40px] md:text-[40px] font-semibold mb-8">About</h1>
-      
-      <div className="space-y-6">
-        <p>
-          This is a minimal blog. It exists to share thoughts on serious topics without distraction.
-        </p>
-        
-        <p>
-          We believe in restraint. In clarity. In the power of words without decoration.
-        </p>
-        
-        <p>
-          Every decision here is intentional. Every element serves a purpose. Nothing more, nothing less.
-        </p>
-        
-        <p>
-          If you find value in this approach, you are welcome here.
-        </p>
+    <>
+      <Navigation />
+      <div className="container py-16">
+        <article>
+          <h1 className="text-[40px] md:text-[40px] font-semibold mb-12">
+            {data.title || 'About'}
+          </h1>
+          <div className="prose prose-lg max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content}
+            </ReactMarkdown>
+          </div>
+        </article>
       </div>
-    </div>
+    </>
   )
 }
-

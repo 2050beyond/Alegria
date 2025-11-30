@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { getBlogPosts } from './lib/posts'
-import { Navigation } from './components/Navigation'
+import { getBlogPosts } from '../lib/posts'
+import { Navigation } from '../components/Navigation'
 
-export default async function Home() {
+export default async function BlogIndex() {
   const posts = await getBlogPosts()
 
   return (
@@ -37,3 +37,4 @@ export default async function Home() {
     </>
   )
 }
+

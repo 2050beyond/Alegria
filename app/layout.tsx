@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
 import './globals.css'
-import TinaEditProvider from './components/TinaEditProvider'
-import EditToggle from './components/EditToggle'
 
 export const metadata: Metadata = {
   title: 'Minimal Restrained Blog',
@@ -25,10 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TinaEditProvider>
-          <EditToggle />
-          {children}
-        </TinaEditProvider>
+        {children}
       </body>
     </html>
   )
