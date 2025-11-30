@@ -32,8 +32,8 @@ export function WalkthroughModal() {
           <p><strong>1. Click any text</strong> to edit it directly on the page</p>
           <p><strong>2. Use the toolbar</strong> for Bold, Italic, Links, Images, and Videos</p>
           <p><strong>3. Drag and drop</strong> images anywhere on the page</p>
-          <p><strong>4. Click "Save & Publish"</strong> when done — your changes go live automatically</p>
-          <p><strong>5. New blog post?</strong> Click "+ New Post" in the top menu</p>
+          <p><strong>4. Click &quot;Save &amp; Publish&quot;</strong> when done — your changes go live automatically</p>
+          <p><strong>5. New blog post?</strong> Click &quot;+ New Post&quot; in the top menu</p>
         </div>
 
         <div className="pt-4 border-t border-black">
@@ -41,7 +41,7 @@ export function WalkthroughModal() {
             onClick={handleClose}
             className="bg-black text-white px-6 py-2 hover:underline"
           >
-            Got it, let's start editing
+            Got it, let&apos;s start editing
           </button>
         </div>
       </div>

@@ -2,19 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import dynamic from 'next/dynamic'
-
-const useCMS = dynamic(
-  () => import('tinacms').then((mod) => mod.useCMS),
-  { ssr: false }
-)
 
 export function SaveButton() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [isSaving, setIsSaving] = useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
-  const [cms, setCms] = useState<any>(null)
 
   useEffect(() => {
     const editMode = searchParams?.get('tina') === '1' || 
@@ -22,18 +15,6 @@ export function SaveButton() {
                     searchParams?.get('edit') === 'true' ||
                     (typeof window !== 'undefined' && window.localStorage.getItem('tina-edit-mode') === 'true')
     setIsEditMode(editMode)
-
-    if (editMode && typeof window !== 'undefined') {
-      // Dynamically import and get CMS instance
-      import('tinacms').then((mod) => {
-        try {
-          const cmsInstance = mod.useCMS()
-          setCms(cmsInstance)
-        } catch (e) {
-          // CMS not ready yet
-        }
-      })
-    }
   }, [searchParams])
 
   const handleSave = async () => {

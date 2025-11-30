@@ -19,13 +19,6 @@ export default defineConfig({
     },
   },
   
-  backend: {
-    name: 'github',
-    repo: '2050beyond/Alegria',
-    branch: 'main',
-    token: process.env.GITHUB_TOKEN || '',
-  },
-  
   schema: {
     collections: [
       {

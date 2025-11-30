@@ -30,21 +30,8 @@ export function ConditionalTinaProvider({ children }: { children: React.ReactNod
     return <>{children}</>
   }
 
-  return (
-    <TinaProvider
-      cmsCallback={(cms) => {
-        // Hide the sidebar
-        if (cms.sidebar) {
-          cms.sidebar.hidden = true
-        }
-      }}
-      branch={process.env.NEXT_PUBLIC_TINA_BRANCH || 'main'}
-      clientId={process.env.NEXT_PUBLIC_TINA_CLIENT_ID || ''}
-      token={process.env.NEXT_PUBLIC_TINA_TOKEN || ''}
-      isLocalClient={process.env.NODE_ENV === 'development'}
-    >
-      {children}
-    </TinaProvider>
-  )
+  // For TinaCMS v2, the provider setup is handled differently
+  // The admin route handles its own setup
+  return <>{children}</>
 }
 
