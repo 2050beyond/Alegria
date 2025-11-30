@@ -14,7 +14,8 @@ export default async function About() {
   return (
     <>
       <Navigation />
-      <div className="container py-16">
+      <div className="pt-20">
+        <div className="container py-16">
         <article>
           <h1 className="text-[40px] md:text-[40px] font-semibold mb-12">
             {data.title || 'About'}
@@ -25,6 +26,7 @@ export default async function About() {
             </ReactMarkdown>
           </div>
         </article>
+      </div>
       </div>
     </>
   )

@@ -8,7 +8,8 @@ export default async function BlogIndex() {
   return (
     <>
       <Navigation />
-      <div className="container py-16">
+      <div className="pt-20">
+        <div className="container py-16">
         <h1 className="text-[40px] md:text-[40px] font-semibold mb-12">
           Blog
         </h1>
@@ -33,6 +34,7 @@ export default async function BlogIndex() {
             </article>
           ))}
         </div>
+      </div>
       </div>
     </>
   )

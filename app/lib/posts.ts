@@ -10,6 +10,7 @@ export interface BlogPost {
   date: string
   excerpt: string
   content: string
+  heroImage?: string
 }
 
 export async function getBlogPosts(): Promise<Omit<BlogPost, 'content'>[]> {
@@ -26,6 +27,7 @@ export async function getBlogPosts(): Promise<Omit<BlogPost, 'content'>[]> {
         title: data.title || '',
         date: data.date || '',
         excerpt: data.excerpt || content.split('\n').slice(0, 2).join(' ').substring(0, 150),
+        heroImage: data.heroImage || undefined,
       }
     })
     .sort((a, b) => {
@@ -47,6 +49,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       date: data.date || '',
       excerpt: data.excerpt || '',
       content,
+      heroImage: data.heroImage || undefined,
     }
   } catch {
     return null

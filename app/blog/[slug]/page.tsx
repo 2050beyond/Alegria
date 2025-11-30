@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import { getBlogPost, getAllPostSlugs } from '../../lib/posts'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
@@ -33,6 +34,7 @@ export async function generateMetadata({
       description: post.excerpt,
       type: 'article',
       publishedTime: post.date,
+      images: post.heroImage ? [post.heroImage] : [],
     },
   }
 }
@@ -49,30 +51,44 @@ export default async function BlogPost({
     notFound()
   }
 
-      return (
-        <>
-          <Navigation />
-          <div className="container py-16">
-            <article>
-        <header className="mb-12">
-          <h1 className="text-[40px] md:text-[40px] font-semibold mb-4">
-            {post.title}
-          </h1>
-          <time className="text-sm block" dateTime={post.date}>
-            {new Date(post.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-        </header>
+  const heroImage = post.heroImage || 'https://source.unsplash.com/1600x900/?minimal,calm,blackandwhite'
 
-        <div>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {post.content}
-          </ReactMarkdown>
+  return (
+    <>
+      <Navigation />
+      <div className="pt-20">
+        <div className="w-full -mx-4 md:-mx-8 mb-12 h-[50vh] relative">
+          <Image
+            src={heroImage}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+            loading="eager"
+            sizes="100vw"
+          />
         </div>
-      </article>
+        <div className="container py-16">
+          <article>
+            <header className="mb-12">
+              <h1 className="text-[40px] md:text-[40px] font-semibold mb-4">
+                {post.title}
+              </h1>
+              <time className="text-sm block" dateTime={post.date}>
+                {new Date(post.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+            </header>
+
+            <div>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {post.content}
+              </ReactMarkdown>
+            </div>
+          </article>
 
           <nav className="mt-16 pt-8 border-t border-black">
             <Link href="/blog" className="hover:underline">
@@ -80,7 +96,7 @@ export default async function BlogPost({
             </Link>
           </nav>
         </div>
-        </>
-      )
+      </div>
+    </>
+  )
 }
-
