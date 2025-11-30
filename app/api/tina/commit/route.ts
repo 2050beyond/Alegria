@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Octokit } from '@octokit/rest'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../../../../auth'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const token = request.cookies.get('tina-token')?.value || process.env.GITHUB_TOKEN
+    
+    // Get token from NextAuth session or fallback to env
+    const session = await getServerSession(authOptions as any)
+    const token = (session as any)?.accessToken || process.env.GITHUB_TOKEN
 
     if (!token) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })

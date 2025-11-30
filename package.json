@@ -16,10 +16,12 @@
     "@tinacms/cli": "^1.12.5",
     "gray-matter": "^4.0.3",
     "next": "^15.0.0",
+    "next-auth": "^4.24.13",
     "next-tinacms-json": "^0.51.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^9.0.0",
+    "react-tinacms-github": "^0.52.0",
     "remark-gfm": "^4.0.0",
     "tinacms": "^2.10.0"
   },
