@@ -3,6 +3,7 @@ import { getBlogPost, getAllPostSlugs } from '../../lib/posts'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs()
@@ -71,9 +72,9 @@ export default async function BlogPost({
       </article>
 
       <nav className="mt-16 pt-8 border-t border-black">
-        <a href="/" className="hover:underline">
+        <Link href="/" className="hover:underline">
           ← Back to blog
-        </a>
+        </Link>
       </nav>
     </div>
   )
