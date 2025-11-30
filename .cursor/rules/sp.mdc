@@ -1,0 +1,28 @@
+---
+alwaysApply: true
+---
+Project Name: Minimal Restrained Blog
+Goal: Ship a production-ready, extremely fast static blog today with 4 pages only.
+Architecture: Next.js 15 App Router + Tailwind CSS + MDX blog posts
+Performance target: 100/100 Lighthouse on mobile & desktop, < 50 KB JS, < 1 second LCP
+Design philosophy: Maximum restraint
+  - Typography: 2 type sizes max (base 18px, headings 32px or 40px)
+  - Colors: 2 colors max (#000000 and #ffffff, or #111111 + #fafafa if needed)
+  - Fonts: System stack only (-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, sans-serif)
+  - No images except one optional tiny logo.svg
+  - No icons, no illustrations, no rounded corners, no shadows, no hover effects beyond underline
+  - Monolithic, brutalist-minimal feel — think early 2010s Tumblr but perfectly executed
+Pages needed (exact 4):
+  - Home / Blog index (list of 4 articles)
+  - Individual blog post page (MDX)
+  - /about
+  - /careers
+  - /contact (simple form + email link, no backend needed)
+Deployment: Vercel (one-click from Cursor)
+Content: All content lives in MDX files inside /app/blog/posts/ — no CMS, no database
+Styling: Global CSS with exactly one stylesheet, Tailwind used only for utilities (no custom config beyond base colors)
+Build constraints:
+  - Use Next.js static export where possible (ISR only for blog posts if needed)
+  - No client-side JavaScript except what's required for MDX hydration
+  - Zero runtime JS on about/careers/contact pages
+Tone: Serious, quiet, confident, restrained
